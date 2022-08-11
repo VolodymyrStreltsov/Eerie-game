@@ -1,6 +1,6 @@
-import Background from './background.js'
-import InputHandler from './input.js'
-import Player from './player.js'
+import Background from './src/background.js'
+import InputHandler from './src/input.js'
+import Player from './src/player.js'
 
 window.addEventListener('load', function(){
   const canvas = canvas1

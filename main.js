@@ -2,6 +2,8 @@ import Background from './src/background.js'
 import { ClimbingEnemy, FlyingEnemy, GroundEnemy } from './src/enemies.js'
 import InputHandler from './src/input.js'
 import Player from './src/player.js'
+import UIElements from './src/UIElements.js'
+
 
 window.addEventListener('load', function(){
   const canvas = canvas1
@@ -18,11 +20,18 @@ window.addEventListener('load', function(){
       this.maxSpeed = 3
       this.background = new Background(this)
       this.player = new Player(this)
-      this.input = new InputHandler()
+      this.input = new InputHandler(this)
+      this.UI = new UIElements(this)
       this.enemies = []
+      this.particles = []
+      this.maxParticles = 50
       this.enemiesArray = [new FlyingEnemy(this), new GroundEnemy(this), new ClimbingEnemy(this)]
       this.enemyTimer = 0
       this.enemyInterval = 1000
+      this.debug = true
+      this.score = 0
+      this.player.currentState = this.player.states[0]
+      this.player.currentState.enter()
     }
     update(deltaTime){
       this.background.update()
@@ -33,25 +42,34 @@ window.addEventListener('load', function(){
         this.enemyTimer = 0
       } else this.enemyTimer += deltaTime
 
-
-      this.enemies.forEach(enemy => {
+      this.enemies.forEach((enemy, idx) => {
         enemy.update(deltaTime)
-        if(enemy.readyForDelete) this.enemies.splice(this.enemies.indexOf(enemy), 1)
+        if(enemy.readyForDelete) this.enemies.splice(idx, 1)
       })
+
+      this.particles.forEach((particle, idx) => {
+        particle.update()
+        if(particle.readyForDelete) this.particles.splice(idx, 1)
+      })
+      if(this.particles.length > this.maxParticles) this.particles = this.particles.slice(0, this.maxParticles)
     }
     draw(context){
       this.background.draw(context)
+      this.particles.forEach(particle => {
+        particle.draw(context)
+      })
       this.player.draw(context)
 
       this.enemies.forEach(enemy => {
         enemy.draw(context)
       })
+
+      this.UI.draw(context)
     }
     addEnemy(){
       if(this.speed <= 0 && Math.random() < 0.99 && this.enemies.length < 4) this.enemies.push(new GroundEnemy(this))
       else if(this.speed > 0) this.enemies.push(new ClimbingEnemy(this))
       this.enemies.push(new FlyingEnemy(this))
-      console.log(this.enemies)
     }
   }
 

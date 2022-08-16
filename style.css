@@ -18,6 +18,6 @@
   border: 1px solid #000;
 }
 
-#player, #layer1, #layer2, #layer3, #layer4, #layer5, #layer6, #layer7, #flyingEnemy, #groundEnemy, #climbingEnemy, #fire {
+#player, #layer1, #layer2, #layer3, #layer4, #layer5, #layer6, #layer7, #flyingEnemy, #groundEnemy, #climbingEnemy, #fire, #boom, #heart {
   display: none;
 }

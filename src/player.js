@@ -75,4 +75,11 @@ export default class Payer {
             }
         })
     }
+    restart(){
+        this.x = 0
+        this.y = this.game.height - this.height - this.game.groundMargin
+        this.vy = 0
+        this.speed = 0
+        this.setState(0, 1)
+    }
 }

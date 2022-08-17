@@ -4,7 +4,6 @@ import InputHandler from './src/input.js'
 import Player from './src/player.js'
 import UIElements from './src/UIElements.js'
 
-
 window.addEventListener('load', function(){
   const canvas = canvas1
   const ctx = canvas.getContext('2d')
@@ -32,18 +31,12 @@ window.addEventListener('load', function(){
       this.debug = false
       this.score = 0
       this.lives = 3
-      this.time = 0
-      this.gameOnTime = false
-      this.maxTime = 10000
       this.gameOver = false
       this.player.currentState = this.player.states[0]
       this.player.currentState.enter()
     }
     update(deltaTime){
       if(this.lives <= 0) this.gameOver = true
-
-      this.time += deltaTime
-      if(this.gameOnTime && this.time > this.maxTime) this.gameOver = true
 
       this.background.update()
       this.player.update(this.input.keys, deltaTime)
@@ -85,12 +78,25 @@ window.addEventListener('load', function(){
         particle.draw(context)
       })
 
-      this.UI.draw(context, this)
+      this.UI.draw(context)
     }
     addEnemy(){
       if(this.speed <= 0 && Math.random() < 0.99 && this.enemies.length < 4) this.enemies.push(new GroundEnemy(this))
       else if(this.speed > 0) this.enemies.push(new ClimbingEnemy(this))
       this.enemies.push(new FlyingEnemy(this))
+    }
+    restart(){
+      this.player.restart()
+      this.speed = 0
+      this.score = 0
+      this.lives = 3
+      this.gameOver = false
+      this.enemies = []
+      this.particles = []
+      this.collisions = []
+      this.player.currentState = this.player.states[0]
+      this.player.currentState.enter()
+      animate(0)
     }
   }
 

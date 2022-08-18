@@ -1,11 +1,11 @@
 import { CollisionAnimation } from './enemiesVisualEffects.js'
-import { Diving, Falling, Hit, Jumping, Rolling, Running, Sitting } from './playerStates.js'
+import { Attacking, Diving, Falling, Hit, Idle, Jumping, Running } from './playerStates.js'
 
 export default class Payer {
     constructor(game){
         this.game = game
-        this.width = 100
-        this.height = 91.3
+        this.width = 128
+        this.height = 128
         this.x = 0
         this.y = this.game.height - this.height - this.game.groundMargin
         this.vy = 0
@@ -14,12 +14,12 @@ export default class Payer {
         this.frameX = 0
         this.frameY = 0
         this.maxFrame
-        this.fps = 20
+        this.fps = 15
         this.frameInterval = 1000 / this.fps
         this.frameTimer = 0
         this.speed = 0
         this.maxSpeed = 10
-        this.states = [new Sitting(this.game), new Running(this.game), new Jumping(this.game), new Falling(this.game), new Rolling(this.game), new Diving(this.game), new Hit(this.game)]
+        this.states = [new Idle(this.game), new Running(this.game), new Jumping(this.game), new Falling(this.game), new Attacking(this.game), new Diving(this.game), new Hit(this.game)]
     }
     update(input, deltaTime){
         this.checkCollision()

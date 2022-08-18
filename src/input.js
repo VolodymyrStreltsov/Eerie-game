@@ -3,7 +3,8 @@ export default class InputHandler {
       this.game = game
       this.keys = []
       this.touchY = ''
-      this.touchTreshold = 30
+      this.touchX = ''
+      this.touchThreshold = 30
       window.addEventListener('keydown', e => {
         if(( e.key === 'ArrowDown' ||
              e.key === 'ArrowUp'   ||
@@ -27,16 +28,25 @@ export default class InputHandler {
 
       window.addEventListener('touchstart', e => {
         this.touchY = e.changedTouches[0].clientY
+        this.touchX = e.changedTouches[0].clientX
       })
       window.addEventListener('touchmove', e => {
-        const swipeDistance = this.touchY - e.changedTouches[0].clientY
-        if(swipeDistance < -this.touchTreshold && this.keys.indexOf('ArrowDown') === -1) this.keys.push('ArrowDown')
-        else if(swipeDistance > this.touchTreshold && this.keys.indexOf('ArrowUp') === -1) this.keys.push('ArrowUp')
+        const swipeDistanceY = this.touchY - e.changedTouches[0].clientY
+        const swipeDistanceX = this.touchX - e.changedTouches[0].clientX
+        const attack = e.changedTouches.length > 1
+
+        if(attack && this.keys.indexOf('x') === -1) this.keys.push('x')
+        else if(swipeDistanceY < -this.touchThreshold && this.keys.indexOf('ArrowDown') === -1) this.keys.push('ArrowDown')
+        else if(swipeDistanceY > this.touchThreshold && this.keys.indexOf('ArrowUp') === -1) this.keys.push('ArrowUp')
+        else if(swipeDistanceX < -this.touchThreshold && this.keys.indexOf('ArrowRight') === -1) this.keys.push('ArrowRight')
+        else if(swipeDistanceX > this.touchThreshold && this.keys.indexOf('ArrowLeft') === -1) this.keys.push('ArrowLeft')
       })
       window.addEventListener('touchend', e => {
-        console.log(this.keys)
+        this.keys.splice(this.keys.indexOf('x'), 1)
         this.keys.splice(this.keys.indexOf('ArrowUp'), 1)
         this.keys.splice(this.keys.indexOf('ArrowDown'), 1)
+        this.keys.splice(this.keys.indexOf('ArrowLeft'), 1)
+        this.keys.splice(this.keys.indexOf('ArrowRight'), 1)
         if(this.keys.indexOf('ArrowUp') && this.game.gameOver) this.game.restart()
       })
   }

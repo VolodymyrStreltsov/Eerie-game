@@ -1,4 +1,4 @@
-import { Dust, Fire, Splash } from './playerVisualEffects.js'
+import { Dust, Fire, Splash } from './playerEffects.js'
 
 const states = {
   IDLE: 0,
@@ -85,8 +85,10 @@ export class Falling extends State {
 export class Attacking extends State {
     constructor(game){
       super('ATTACKING', game)
+      this.sound = new Audio('assets/sounds/fireExplosion.wav')
     }
     enter(){
+      this.sound.play()
       this.game.player.frameX = 0
       this.game.player.frameY = 0
       this.game.player.maxFrame = 6
@@ -103,8 +105,10 @@ export class Attacking extends State {
 export class Diving extends State {
     constructor(game){
       super('DIVING', game)
+      this.sound = new Audio('assets/sounds/divingAttack.wav')
     }
     enter(){
+      this.sound.play()
       this.game.player.frameX = 0
       this.game.player.frameY = 5
       this.game.player.maxFrame = 7

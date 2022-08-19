@@ -28,8 +28,8 @@ export class FlyingEnemy extends Enemy {
   constructor(game){
     super()
     this.game = game
-    this.imgWidth = 50
-    this.imgHeight = 26
+    this.imgWidth = 100
+    this.imgHeight = 71
     this.sizeModifier = Math.random() + 0.5
     this.width = this.imgWidth * this.sizeModifier
     this.height = this.imgHeight * this.sizeModifier
@@ -41,11 +41,17 @@ export class FlyingEnemy extends Enemy {
     this.image = flyingEnemy
     this.angle = 0
     this.va = Math.random() * 0.1 - 0.1
+    this.timeSinceFlap = 0
+    this.flapInterval = Math.random() * 50 + 100
   }
   update(deltaTime){
     super.update(deltaTime)
     this.angle += this.va
     this.y += Math.sin(this.angle)
+    this.timeSinceFlap += deltaTime
+    if(this.timeSinceFlap > this.flapInterval){
+      this.timeSinceFlap = 0
+    }
   }
 }
 
@@ -53,9 +59,9 @@ export class GroundEnemy extends Enemy {
     constructor(game){
     super()
     this.game = game
-    this.imgWidth = 100
-    this.imgHeight = 71
-    this.sizeModifier = Math.random() + 0.5
+    this.imgWidth = 50
+    this.imgHeight = 26
+    this.sizeModifier = Math.random() * 2
     this.width = this.imgWidth * this.sizeModifier
     this.height = this.imgHeight * this.sizeModifier
     this.x = this.game.width + Math.random() * this.game.width * 0.5

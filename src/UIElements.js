@@ -6,9 +6,14 @@ export default class UIElements {
     this.fontColor = 'rgba(255, 255, 255, 0.7)'
     this.shadowColor = 'rgba(0, 0, 0, 0.9)'
     this.liveImage = heart
+    this.gameOverSound = new Audio('./assets/sounds/death.wav')
+    this.themeSound = new Audio('./assets/sounds/theme.mp3')
+    this.themeSound.volume = 0.1
   }
   draw(context){
     context.save()
+    if(this.game.input.keys.length > 0) this.themeSound.play() // TODO autoplay
+
     context.shadowOffsetX = 2
     context.shadowOffsetY = 2
     context.shadowBlur = 1
@@ -23,6 +28,8 @@ export default class UIElements {
     }
 
     if(this.game.gameOver){
+      this.themeSound.pause()
+      this.gameOverSound.play()
       context.font = `${this.fontSize}px ${this.fontFamily}`
       context.fillText(`Game over. Your score: ${this.game.score}`, this.game.width * 0.5, this.game.height * 0.5)
       context.fillText(`Press Enter or swipe up to restart`, this.game.width * 0.5, this.game.height * 0.6)

@@ -4,6 +4,8 @@ import InputHandler from './src/input.js'
 import Player from './src/player.js'
 import UIElements from './src/UIElements.js'
 
+
+
 window.addEventListener('load', function(){
   const canvas = canvas1
   const ctx = canvas.getContext('2d')

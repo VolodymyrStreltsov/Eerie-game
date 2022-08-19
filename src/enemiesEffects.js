@@ -1,4 +1,4 @@
-export class CollisionAnimation {
+export class Explosion {
   constructor(game, x, y){
     this.game = game
     this.imgWidth = 100
@@ -15,9 +15,14 @@ export class CollisionAnimation {
     this.fps = 13
     this.frameInterval = 1000/this.fps
     this.frameTimer = 0
+    this.sound = new Audio('./assets/sounds/explosion.wav')
+    this.sound.volume = 0.5
   }
   update(deltaTime){
+    if(this.frameX === 0) this.sound.play()
+
     this.x -= this.game.speed
+
     if(this.frameTimer > this.frameInterval){
       this.frameTimer = 0
       if(this.frameX < this.maxFrame) this.frameX++

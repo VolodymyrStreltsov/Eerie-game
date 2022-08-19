@@ -1,4 +1,4 @@
-import { CollisionAnimation } from './enemiesVisualEffects.js'
+import { Explosion } from './enemiesEffects.js'
 import { Attacking, Diving, Falling, Hit, Idle, Jumping, Running } from './playerStates.js'
 
 export default class Payer {
@@ -64,7 +64,7 @@ export default class Payer {
                enemy.y < this.y + this.height &&
                enemy.y + enemy.height > this.y){
                 enemy.readyForDelete = true
-                this.game.collisions.push(new CollisionAnimation(this.game, enemy.x + enemy.width * 0.5, enemy.y + enemy.height * 0.5))
+                this.game.collisions.push(new Explosion(this.game, enemy.x + enemy.width * 0.5, enemy.y + enemy.height * 0.5))
                 if(this.currentState === this.states[4] ||
                    this.currentState === this.states[5]){
                this.game.score++

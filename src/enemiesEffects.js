@@ -30,6 +30,9 @@ export class Explosion {
     } else this.frameTimer += deltaTime
   }
   draw(context){
+    context.save()
+    context.globalAlpha = 0.6
     context.drawImage(this.image, this.frameX * this.imgWidth, 0, this.imgWidth, this.imgHeight, this.x, this.y, this.width, this.height)
+    context.restore()
   }
 }

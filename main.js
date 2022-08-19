@@ -36,6 +36,8 @@ window.addEventListener('load', function(){
       this.gameOver = false
       this.player.currentState = this.player.states[0]
       this.player.currentState.enter()
+      this.energy = 100
+      this.energyMax = 100
     }
     update(deltaTime){
       if(this.lives <= 0) this.gameOver = true
@@ -98,6 +100,7 @@ window.addEventListener('load', function(){
       this.collisions = []
       this.player.currentState = this.player.states[0]
       this.player.currentState.enter()
+      this.energy = 100
       animate(0)
     }
   }

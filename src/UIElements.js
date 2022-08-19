@@ -6,6 +6,7 @@ export default class UIElements {
     this.fontColor = 'rgba(255, 255, 255, 0.7)'
     this.shadowColor = 'rgba(0, 0, 0, 0.9)'
     this.liveImage = heart
+    this.energyImage = energy
     this.gameOverSound = new Audio('./assets/sounds/death.wav')
     this.themeSound = new Audio('./assets/sounds/theme.mp3')
     this.themeSound.volume = 0.1
@@ -26,6 +27,9 @@ export default class UIElements {
     for(let i = 0; i < this.game.lives; i++){
     context.drawImage(this.liveImage, 30 * i + 20, 70, 20, 20)
     }
+
+    context.drawImage(this.energyImage, this.game.width * 0.05, this.game.height - 30, 20, 20)
+    context.fillText(`${this.game.energy.toFixed(0)}`, this.game.width * 0.15, this.game.height - 10)
 
     if(this.game.gameOver){
       this.themeSound.pause()

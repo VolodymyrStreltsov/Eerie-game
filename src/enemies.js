@@ -61,7 +61,7 @@ export class GroundEnemy extends Enemy {
     this.game = game
     this.imgWidth = 50
     this.imgHeight = 26
-    this.sizeModifier = Math.random() *  3
+    this.sizeModifier = Math.random() * 0.5
     this.width = this.imgWidth * this.sizeModifier
     this.height = this.imgHeight * this.sizeModifier
     this.x = this.game.width + Math.random() * this.game.width * 0.5

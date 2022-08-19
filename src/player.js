@@ -26,6 +26,11 @@ export default class Payer {
         this.currentState.handleInput(input)
 
         this.x += this.speed
+
+        if(this.game.currentState !== this.states[4] && this.game.currentState !== this.states[5] && this.game.energy < this.game.energyMax){
+            this.game.energy += 0.1
+        }
+
         if(input.includes('ArrowRight') && this.currentState !== this.states[6]) this.speed = this.maxSpeed
         else if(input.includes('ArrowLeft') && this.currentState !== this.states[6]) this.speed = -this.maxSpeed
         else this.speed = 0

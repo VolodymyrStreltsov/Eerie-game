@@ -20,7 +20,7 @@ class Enemy {
   }
   draw(context){
     if(this.game.debug) context.strokeRect(this.x, this.y, this.width, this.height)
-    context.drawImage(this.image, this.frameX * this.width, 0, this.width, this.height, this.x, this.y, this.width, this.height)
+    context.drawImage(this.image, this.frameX * this.imgWidth, 0, this.imgWidth, this.imgHeight, this.x, this.y, this.width, this.height)
   }
 }
 
@@ -28,8 +28,11 @@ export class FlyingEnemy extends Enemy {
   constructor(game){
     super()
     this.game = game
-    this.width = 50
-    this.height = 26
+    this.imgWidth = 50
+    this.imgHeight = 26
+    this.sizeModifier = Math.random() + 0.5
+    this.width = this.imgWidth * this.sizeModifier
+    this.height = this.imgHeight * this.sizeModifier
     this.x = this.game.width + Math.random() * this.game.width * 0.5
     this.y = Math.random() * this.game.height * 0.5
     this.speedX = Math.random() + 1
@@ -50,8 +53,11 @@ export class GroundEnemy extends Enemy {
     constructor(game){
     super()
     this.game = game
-    this.width = 100
-    this.height = 71
+    this.imgWidth = 100
+    this.imgHeight = 71
+    this.sizeModifier = Math.random() + 0.5
+    this.width = this.imgWidth * this.sizeModifier
+    this.height = this.imgHeight * this.sizeModifier
     this.x = this.game.width + Math.random() * this.game.width * 0.5
     this.y = this.game.height - this.game.groundMargin - this.height
     this.speedX = 0
@@ -68,8 +74,11 @@ export class ClimbingEnemy extends Enemy {
     constructor(game){
     super()
     this.game = game
-    this.width = 100
-    this.height = 81
+    this.imgWidth = 100
+    this.imgHeight = 81
+    this.sizeModifier = Math.random() + 0.5
+    this.width = this.imgWidth * this.sizeModifier
+    this.height = this.imgHeight * this.sizeModifier
     this.x = this.game.width
     this.y = Math.random() * this.game.height * 0.5
     this.speedX = 0

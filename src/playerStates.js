@@ -85,7 +85,7 @@ export class Falling extends State {
 export class Attacking extends State {
     constructor(game){
       super('ATTACKING', game)
-      this.sound = new Audio('assets/sounds/fireExplosion.wav')
+      this.sound = new Audio('assets/sounds/energyExplosion.wav')
     }
     enter(){
       this.sound.play()

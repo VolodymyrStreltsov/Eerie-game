@@ -38,7 +38,7 @@ export class Splash extends Effects {
     this.speedX = Math.random() * 6 -3
     this.speedY = Math.random() * 2 + 2
     this.gravity = 0
-    this.image = fire
+    this.image = energy
   }
     update(){
     super.update()
@@ -50,7 +50,7 @@ export class Splash extends Effects {
   }
 }
 
-export class Fire extends Effects {
+export class Energy extends Effects {
   constructor(game, x, y){
     super(game)
     this.x = x
@@ -58,7 +58,7 @@ export class Fire extends Effects {
     this.size = Math.random() * 100 + 50
     this.speedX = 1
     this.speedY = 1
-    this.image = fire
+    this.image = energy
     this.angle = 0
     this.va = Math.random() * 0.1 - 0.01
   }

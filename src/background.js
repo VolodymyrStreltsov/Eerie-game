@@ -30,6 +30,7 @@ export default class Background {
       this.layerImg5 = layer5
       this.layerImg6 = layer6
       this.layerImg7 = layer7
+      this.layerImg8 = layer8
       this.layer1 = new Layer(this.game, this.width, this.height, 1, this.layerImg1)
       this.layer2 = new Layer(this.game, this.width, this.height, 0.9, this.layerImg2)
       this.layer3 = new Layer(this.game, this.width, this.height, 0.8, this.layerImg3)
@@ -37,7 +38,8 @@ export default class Background {
       this.layer5 = new Layer(this.game, this.width, this.height, 0.4, this.layerImg5)
       this.layer6 = new Layer(this.game, this.width, this.height, 0.2, this.layerImg6)
       this.layer7 = new Layer(this.game, this.width, this.height, 0, this.layerImg7)
-      this.layers = [this.layer7, this.layer6, this.layer5, this.layer4, this.layer3, this.layer2, this.layer1]
+      this.layer8 = new Layer(this.game, this.width, this.height, 0, this.layerImg8)
+      this.layers = [this.layer8, this.layer7, this.layer6, this.layer5, this.layer4, this.layer3, this.layer2, this.layer1]
     }
     update(){
       this.layers.forEach(layer => layer.update())

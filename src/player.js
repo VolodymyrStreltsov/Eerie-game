@@ -4,9 +4,9 @@ import { Attacking, Diving, Falling, Hit, Idle, Jumping, Running } from './playe
 export default class Payer {
     constructor(game){
         this.game = game
-        this.width = 128
-        this.height = 128
-        this.x = 0
+        this.width = 100
+        this.height = 91.75
+        this.x = 50
         this.y = this.game.height - this.height - this.game.groundMargin
         this.vy = 0
         this.weight = 1
@@ -14,7 +14,7 @@ export default class Payer {
         this.frameX = 0
         this.frameY = 0
         this.maxFrame
-        this.fps = 15
+        this.fps = 20
         this.frameInterval = 1000 / this.fps
         this.frameTimer = 0
         this.speed = 0
@@ -51,7 +51,7 @@ export default class Payer {
         } else this.frameTimer += deltaTime
     }
     draw(context){
-        if(this.game.debug) context.strokeRect(this.x, this.y, this.width, this.height)
+        if(this.game.debug) context.strokeRect(this.x, this.y + 10, this.width * 0.4, this.height - 20)
         context.drawImage(this.image, this.frameX * this.width, this.frameY * this.height, this.width, this.height, this.x, this.y, this.width, this.height)
     }
     onGround(){
@@ -64,10 +64,10 @@ export default class Payer {
     }
     checkCollision(){
         this.game.enemies.forEach(enemy => {
-            if(enemy.x < this.x + this.width &&
+            if(enemy.x < this.x + this.width * 0.4 &&
                enemy.x + enemy.width > this.x &&
-               enemy.y < this.y + this.height &&
-               enemy.y + enemy.height > this.y){
+               enemy.y < this.y + 10 + this.height - 20 &&
+               enemy.y + enemy.height > this.y + 10){
                 enemy.readyForDelete = true
                 this.game.collisions.push(new Explosion(this.game, enemy.x + enemy.width * 0.5, enemy.y + enemy.height * 0.5))
                 if(this.currentState === this.states[4] ||
@@ -81,7 +81,7 @@ export default class Payer {
         })
     }
     restart(){
-        this.x = 0
+        this.x = 50
         this.y = this.game.height - this.height - this.game.groundMargin
         this.vy = 0
         this.speed = 0

@@ -96,9 +96,9 @@ export class Attacking extends State {
     handleInput(input){
       this.game.energy--
       this.game.particles.unshift(new Energy(this.game, this.game.player.x + this.game.player.width * 0.25, this.game.player.y + this.game.player.height * 0.5))
-      if(this.game.energy < 1 && this.game.player.onGround()) this.game.player.setState(states.RUNNING, 1)
+      if(this.game.energy < 1 && this.game.player.onGround()) this.game.player.setState(states.RUNNING, 2)
       if(this.game.energy < 1 && !this.game.player.onGround()) this.game.player.setState(states.FALLING, 1)
-      else if(!input.includes('x') && this.game.player.onGround()) this.game.player.setState(states.RUNNING, 1)
+      else if(!input.includes('x') && this.game.player.onGround()) this.game.player.setState(states.RUNNING, 2)
       else if (!input.includes('x') && !this.game.player.onGround()) this.game.player.setState(states.FALLING, 1)
       else if (input.includes('x') && this.game.player.onGround() && input.includes('ArrowUp')) this.game.player.vy -= 27
       else if(this.game.energy > 30 && input.includes('ArrowDown') && !this.game.player.onGround()) this.game.player.setState(states.DIVING, 0)
@@ -121,7 +121,7 @@ export class Diving extends State {
       this.game.energy--
       this.game.particles.unshift(new Energy(this.game, this.game.player.x + this.game.player.width * 0.5, this.game.player.y + this.game.player.height * 0.5))
       if(this.game.player.onGround()){
-        this.game.player.setState(states.RUNNING, 1)
+        this.game.player.setState(states.RUNNING, 2)
         for(let i = 0; i < 20; i++){
         this.game.particles.unshift(new Splash(this.game, this.game.player.x, this.game.player.y))
         }
@@ -140,7 +140,7 @@ export class Hit extends State {
       this.game.player.maxFrame = 14
     }
     handleInput(input){
-      if(this.game.player.frameX >= 3 && this.game.player.onGround()) this.game.player.setState(states.RUNNING, 1)
+      if(this.game.player.frameX >= 3 && this.game.player.onGround()) this.game.player.setState(states.RUNNING, 2)
       else if (this.game.player.frameX >= 3 && !this.game.player.onGround()) this.game.player.setState(states.FALLING, 1)
     }
 }

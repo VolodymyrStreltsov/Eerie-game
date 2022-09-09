@@ -85,9 +85,9 @@ window.addEventListener('load', function(){
       this.UI.draw(context)
     }
     addEnemy(){
-      if(this.speed <= 0 && Math.random() < 0.99 && this.enemies.length < 4) this.enemies.push(new GroundEnemy(this))
-      else if(this.speed > 0) this.enemies.push(new ClimbingEnemy(this))
-      this.enemies.push(new FlyingEnemy(this))
+      if(Math.random() > 0.8 && this.enemies.length < 4) this.enemies.push(new GroundEnemy(this))
+      else if(this.speed > 0 && Math.random() > 0.7) this.enemies.push(new ClimbingEnemy(this))
+      else if(Math.random() > 0.5) this.enemies.push(new FlyingEnemy(this))
     }
     restart(){
       this.player.restart()

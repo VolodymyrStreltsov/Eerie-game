@@ -2,7 +2,7 @@ class Enemy {
   constructor(){
     this.frameX = 0
     this.frameY = 0
-    this.fps = 20
+    this.fps = 5
     this.frameInterval = 1000/this.fps
     this.frameTimer = 0
     this.readyForDelete = false
@@ -28,8 +28,8 @@ export class FlyingEnemy extends Enemy {
   constructor(game){
     super()
     this.game = game
-    this.imgWidth = 100
-    this.imgHeight = 71
+    this.imgWidth = 128.83
+    this.imgHeight = 80
     this.sizeModifier = Math.random() + 0.5
     this.width = this.imgWidth * this.sizeModifier
     this.height = this.imgHeight * this.sizeModifier
@@ -58,18 +58,24 @@ export class FlyingEnemy extends Enemy {
 export class GroundEnemy extends Enemy {
     constructor(game){
     super()
+    if(Math.random() > 0.5){
+      this.imgWidth = 86
+      this.maxFrame = 0
+      this.image = groundObstacle
+    } else {
+      this.imgWidth = 100
+      this.maxFrame = 1
+      this.image = groundEnemy
+    }
     this.game = game
-    this.imgWidth = 50
-    this.imgHeight = 26
-    this.sizeModifier = Math.random() * 0.5
+    this.imgHeight = 86
+    this.sizeModifier =  Math.random() + 0.45
     this.width = this.imgWidth * this.sizeModifier
     this.height = this.imgHeight * this.sizeModifier
     this.x = this.game.width + Math.random() * this.game.width * 0.5
-    this.y = this.game.height - this.game.groundMargin - this.height
+    this.y = this.game.height - this.game.groundMargin - 10 - this.height
     this.speedX = 0
     this.speedY = 0
-    this.maxFrame = 5
-    this.image = groundEnemy
   }
   update(deltaTime){
     super.update(deltaTime)
@@ -81,7 +87,7 @@ export class ClimbingEnemy extends Enemy {
     super()
     this.game = game
     this.imgWidth = 100
-    this.imgHeight = 81
+    this.imgHeight = 82
     this.sizeModifier = Math.random() + 0.5
     this.width = this.imgWidth * this.sizeModifier
     this.height = this.imgHeight * this.sizeModifier
@@ -89,7 +95,7 @@ export class ClimbingEnemy extends Enemy {
     this.y = Math.random() * this.game.height * 0.5
     this.speedX = 0
     this.speedY = Math.random() > 0.5 ? 1 : -1
-    this.maxFrame = 5
+    this.maxFrame = 0
     this.image = climbingEnemy
   }
   update(deltaTime){

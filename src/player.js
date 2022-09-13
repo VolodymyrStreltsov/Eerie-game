@@ -1,4 +1,4 @@
-import { Explosion } from './enemiesEffects.js'
+import { Explosion, FloatingMessage } from './collisionEffects.js'
 import { Attacking, Diving, Falling, Hit, Idle, Jumping, Running } from './playerStates.js'
 
 export default class Payer {
@@ -64,19 +64,29 @@ export default class Payer {
     }
     checkCollision(){
         this.game.enemies.forEach(enemy => {
-            if(enemy.x < this.x + this.width * 0.4 &&
-               enemy.x + enemy.width > this.x &&
-               enemy.y < this.y + 10 + this.height - 20 &&
-               enemy.y + enemy.height > this.y + 10){
+            if(enemy.x + enemy.sizeModifier + 5 < this.x + this.width * 0.4 &&
+               enemy.x + enemy.sizeModifier + 5 + enemy.width * 0.8 > this.x &&
+               enemy.y + enemy.sizeModifier + 5 < this.y + 10 + this.height - 20 &&
+               enemy.y + enemy.sizeModifier + 5 + enemy.height * 0.8 > this.y + 10){
                 enemy.readyForDelete = true
                 this.game.collisions.push(new Explosion(this.game, enemy.x + enemy.width * 0.5, enemy.y + enemy.height * 0.5))
                 if(this.currentState === this.states[4] ||
                    this.currentState === this.states[5]){
-               this.game.score++
+               // this.game.score++
                 } else {
                     this.setState(6, 0)
                     this.game.lives--
                 }
+            }
+        })
+        this.game.rewards.forEach(reward => {
+            if(reward.x < this.x + this.width * 0.4 &&
+               reward.x + reward.width * 0.8 > this.x &&
+               reward.y < this.y + 10 + this.height - 20 &&
+               reward.y + reward.height * 0.8 > this.y + 10){
+                reward.readyForDelete = true
+                this.game.collisions.push(new FloatingMessage('+1', reward.x + reward.width * 0.5, reward.y + reward.height * 0.5, 120, 50))
+                this.game.score++
             }
         })
     }

@@ -19,7 +19,7 @@ export class Dust extends Effects {
     this.size = Math.random() * 10 + 10
     this.speedX = Math.random()
     this.speedY = Math.random()
-    this.color = 'rgba(255, 255, 255, 0.3)'
+    this.color = 'rgba(192, 192, 192, 0.3)'
   }
   draw(context){
     context.beginPath()

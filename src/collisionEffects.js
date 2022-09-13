@@ -36,3 +36,28 @@ export class Explosion {
     context.restore()
   }
 }
+
+export class FloatingMessage {
+  constructor(value, x, y, targetX, targetY){
+    this.value = value
+    this.x = x
+    this.y = y
+    this.targetX = targetX
+    this.targetY = targetY
+    this.readyForDelete = false
+    this.timer = 0
+  }
+  update(){
+    this.x += (this.targetX - this.x) * 0.05
+    this.y += (this.targetY - this.y) * 0.05
+    this.timer++
+    if(this.timer > 100) this.readyForDelete = true
+  }
+  draw(context){
+    context.shadowColor = 'rgba(0, 0, 0, 0.9)'
+    context.font = '20px Amatic SC'
+    context.textAlign = 'center'
+    context.fillStyle = 'rgba(255, 255, 255, 0.7)'
+    context.fillText(this.value, this.x, this.y)
+  }
+}

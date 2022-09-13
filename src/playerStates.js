@@ -43,7 +43,7 @@ export class Running extends State {
       this.game.player.maxFrame = 14
     }
     handleInput(input){
-      this.game.particles.unshift(new Dust(this.game, this.game.player.x + this.game.player.width * 0.25, this.game.player.y + this.game.player.height))
+      this.game.particles.unshift(new Dust(this.game, this.game.player.x + this.game.player.width * 0.25, this.game.player.y + this.game.player.height - 10))
       if(input.includes('ArrowDown') && !(input.includes('ArrowLeft') || input.includes('ArrowRight'))) this.game.player.setState(states.IDLE, 0)
       else if (input.includes('ArrowUp') && !input.includes('ArrowDown')) this.game.player.setState(states.JUMPING, 1)
       else if(this.game.energy > 0 && input.includes('x')) this.game.player.setState(states.ATTACKING, 2)

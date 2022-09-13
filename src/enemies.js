@@ -19,7 +19,7 @@ class Enemy {
     if(this.x + this.width < 0) this.readyForDelete = true
   }
   draw(context){
-    if(this.game.debug) context.strokeRect(this.x, this.y, this.width, this.height)
+    if(this.game.debug) context.strokeRect(this.x + this.sizeModifier + 5, this.y + this.sizeModifier + 5, this.width * 0.8, this.height * 0.8)
     context.drawImage(this.image, this.frameX * this.imgWidth, 0, this.imgWidth, this.imgHeight, this.x, this.y, this.width, this.height)
   }
 }

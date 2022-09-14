@@ -14,14 +14,15 @@ class Layer {
   }
   draw(context) {
     context.drawImage(this.image, this.x, this.y, this.width, this.height)
-    context.drawImage(this.image, this.x + this.width, this.y, this.width, this.height)
+    context.drawImage(this.image, this.x + this.width - 1, this.y, this.width, this.height)
   }
 }
 
 export default class Background {
     constructor(game){
       this.game = game
-      this.width = 2000
+      this.width = 889
+      this.mainWidth = 1920
       this.height = 500
       this.layerImg1 = layer1
       this.layerImg2 = layer2
@@ -32,7 +33,7 @@ export default class Background {
       this.layerImg7 = layer7
       this.layerImg8 = layer8
       this.layer1 = new Layer(this.game, this.width, this.height, 1, this.layerImg1)
-      this.layer2 = new Layer(this.game, this.width, this.height, 0.9, this.layerImg2)
+      this.layer2 = new Layer(this.game, this.mainWidth, this.height, 0.9, this.layerImg2)
       this.layer3 = new Layer(this.game, this.width, this.height, 0.8, this.layerImg3)
       this.layer4 = new Layer(this.game, this.width, this.height, 0.7, this.layerImg4)
       this.layer5 = new Layer(this.game, this.width, this.height, 0.5, this.layerImg5)

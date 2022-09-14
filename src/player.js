@@ -5,7 +5,7 @@ export default class Payer {
     constructor(game){
         this.game = game
         this.width = 100
-        this.height = 91.75
+        this.height = 92
         this.x = 50
         this.y = this.game.height - this.height - this.game.groundMargin
         this.vy = 0
@@ -85,7 +85,7 @@ export default class Payer {
                reward.y < this.y + 10 + this.height - 20 &&
                reward.y + reward.height * 0.8 > this.y + 10){
                 reward.readyForDelete = true
-                this.game.collisions.push(new FloatingMessage('+1', reward.x + reward.width * 0.5, reward.y + reward.height * 0.5, 120, 50))
+                this.game.collisions.push(new FloatingMessage('+1', reward.x + reward.width * 0.5, reward.y + reward.height * 0.5, 170, 50))
                 this.game.score++
             }
         })

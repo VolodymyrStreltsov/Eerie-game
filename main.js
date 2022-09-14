@@ -44,7 +44,12 @@ window.addEventListener('load', function(){
       this.energyMax = 100
     }
     update(deltaTime){
-      if(this.lives <= 0) this.gameOver = true
+      if(this.lives <= 0){
+        setTimeout(() => {
+          this.gameOver = true
+          this.player.y = this.height - this.player.height - this.groundMargin
+        }, 550);
+      }
 
       this.background.update()
       this.player.update(this.input.keys, deltaTime)
@@ -60,7 +65,7 @@ window.addEventListener('load', function(){
       })
 
       if(this.rewardTimer > this.rewardInterval){
-        this. addReward()
+        this.addReward()
         this.rewardTimer = 0
       } else this.rewardTimer += deltaTime
 
@@ -103,12 +108,12 @@ window.addEventListener('load', function(){
       this.UI.draw(context)
     }
     addEnemy(){
-      if(Math.random() > 0.8 && this.enemies.length < 4) this.enemies.push(new GroundEnemy(this))
+      if(this.speed > 0 && Math.random() > 0.8) this.enemies.push(new GroundEnemy(this))
       else if(this.speed > 0 && Math.random() > 0.7) this.enemies.push(new ClimbingEnemy(this))
       else if(Math.random() > 0.5) this.enemies.push(new FlyingEnemy(this))
     }
     addReward(){
-      if(Math.random() > 0.8) this.rewards.push(new Pumpkin(this))
+      if(Math.random() > 0.7 && this.rewards.length <= 1) this.rewards.push(new Pumpkin(this))
     }
     restart(){
       this.player.restart()

@@ -9,13 +9,13 @@ export default class UIElements {
     this.shadowColor = 'rgba(0, 0, 0, 0.9)'
     this.liveImage = heart
     this.energyImage = energy
-    this.gameOverSound = new Audio('./assets/sounds/death.wav')
+    this.gameOverSound = new Audio('./assets/sounds/death.mp3')
     this.themeSound = new Audio('./assets/sounds/theme.mp3')
-    this.themeSound.volume = 0.1
+    this.themeSound.volume = 0.2
   }
   draw(context){
     context.save()
-    if(this.game.input.keys.length > 0) this.themeSound.play() // TODO autoplay
+    if(this.game.input.keys.length > 0) this.themeSound.play()
 
     context.shadowOffsetX = 2
     context.shadowOffsetY = 2
@@ -44,7 +44,7 @@ export default class UIElements {
       context.fillStyle = this.mainFontColor
       context.shadowColor = this.shadowColor
       context.fillText(`You died. Pumpkins collected: ${this.game.score}`, this.game.width * 0.5, this.game.height * 0.5)
-      context.fillText(`Press Enter or swipe up to restart`, this.game.width * 0.5, this.game.height * 0.6)
+      context.fillText(`Press Enter to restart`, this.game.width * 0.5, this.game.height * 0.6)
    }
     context.restore()
   }

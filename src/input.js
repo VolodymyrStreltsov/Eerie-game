@@ -13,7 +13,7 @@ export default class InputHandler {
              e.key === 'x')
              && this.keys.indexOf(e.key) === -1){
           this.keys.push(e.key)
-        } else if(e.key === 'd') this.game.debug = !this.game.debug
+        } // else if(e.key === 'd') this.game.debug = !this.game.debug // uncomment for debugging
           else if(e.key === 'Enter' && this.game.gameOver) this.game.restart()
       })
       window.addEventListener('keyup', e => {

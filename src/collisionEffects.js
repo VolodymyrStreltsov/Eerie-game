@@ -15,7 +15,7 @@ export class Explosion {
     this.fps = 13
     this.frameInterval = 1000/this.fps
     this.frameTimer = 0
-    this.sound = new Audio('./assets/sounds/explosion.wav')
+    this.sound = new Audio('./assets/sounds/explosion.flac')
     this.sound.volume = 0.5
   }
   update(deltaTime){
@@ -46,8 +46,11 @@ export class FloatingMessage {
     this.targetY = targetY
     this.readyForDelete = false
     this.timer = 0
+    this.sound = new Audio('./assets/sounds/churchbell.flac')
+    this.sound.volume = 0.3
   }
   update(){
+    this.sound.play()
     this.x += (this.targetX - this.x) * 0.05
     this.y += (this.targetY - this.y) * 0.05
     this.timer++

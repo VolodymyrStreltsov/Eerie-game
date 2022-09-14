@@ -34,7 +34,7 @@ export class FlyingEnemy extends Enemy {
     this.width = this.imgWidth * this.sizeModifier
     this.height = this.imgHeight * this.sizeModifier
     this.x = this.game.width + Math.random() * this.game.width * 0.5
-    this.y = Math.random() * this.game.height * 0.5
+    this.y = Math.random() * this.game.height * 0.45
     this.speedX = Math.random() + 1
     this.speedY = 0
     this.maxFrame = 5
@@ -62,14 +62,15 @@ export class GroundEnemy extends Enemy {
       this.imgWidth = 86
       this.maxFrame = 0
       this.image = groundObstacle
+      this.sizeModifier =  Math.random() + 0.5
     } else {
       this.imgWidth = 100
       this.maxFrame = 1
       this.image = groundEnemy
+      this.sizeModifier =  Math.random() + 0.4
     }
     this.game = game
     this.imgHeight = 86
-    this.sizeModifier =  Math.random() + 0.45
     this.width = this.imgWidth * this.sizeModifier
     this.height = this.imgHeight * this.sizeModifier
     this.x = this.game.width + Math.random() * this.game.width * 0.5
@@ -87,7 +88,7 @@ export class ClimbingEnemy extends Enemy {
     super()
     this.game = game
     this.imgWidth = 100
-    this.imgHeight = 82
+    this.imgHeight = 95
     this.sizeModifier = Math.random() + 0.5
     this.width = this.imgWidth * this.sizeModifier
     this.height = this.imgHeight * this.sizeModifier
@@ -95,7 +96,7 @@ export class ClimbingEnemy extends Enemy {
     this.y = Math.random() * this.game.height * 0.5
     this.speedX = 0
     this.speedY = Math.random() > 0.5 ? 1 : -1
-    this.maxFrame = 0
+    this.maxFrame = 4
     this.image = climbingEnemy
   }
   update(deltaTime){
@@ -108,7 +109,7 @@ export class ClimbingEnemy extends Enemy {
     super.draw(context)
     context.beginPath()
     context.moveTo(this.x + this.width * 0.5, 0)
-    context.lineTo(this.x + this.width * 0.5, this.y + 20)
+    context.lineTo(this.x + this.width * 0.5, this.y + (this.height * 0.35))
     context.stroke()
   }
 }

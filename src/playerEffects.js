@@ -58,9 +58,10 @@ export class Energy extends Effects {
     this.size = Math.random() * 100 + 50
     this.speedX = 1
     this.speedY = 1
-    this.image = energy
     this.angle = 0
     this.va = Math.random() * 0.1 - 0.01
+    if(this.game.energy > 10) this.image = energy
+    else this.image = fire
   }
   update(){
     super.update()

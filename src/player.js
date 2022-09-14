@@ -72,7 +72,7 @@ export default class Payer {
                 this.game.collisions.push(new Explosion(this.game, enemy.x + enemy.width * 0.5, enemy.y + enemy.height * 0.5))
                 if(this.currentState === this.states[4] ||
                    this.currentState === this.states[5]){
-               // this.game.score++
+               // this.game.score++ // uncomment this line to add score on kill enemy
                 } else {
                     this.setState(6, 0)
                     this.game.lives--

@@ -116,11 +116,11 @@ window.addEventListener('load', function(){
       if(Math.random() > 0.7 && this.rewards.length <= 1) this.rewards.push(new Pumpkin(this))
     }
     restart(){
+      this.gameOver = false
       this.player.restart()
       this.speed = 0
       this.score = 0
       this.lives = 3
-      this.gameOver = false
       this.enemies = []
       this.particles = []
       this.collisions = []

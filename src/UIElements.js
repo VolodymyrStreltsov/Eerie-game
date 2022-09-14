@@ -40,8 +40,6 @@ export default class UIElements {
     context.shadowColor = 'rgba(255, 255, 255)'
     context.fillText('press X to attack', this.game.width * 0.8, this.game.height - 15)
 
-
-    console.log(this.game.randomQuote)
     if(this.game.gameOver){
       this.themeSound.pause()
       this.gameOverSound.play()
@@ -52,7 +50,7 @@ export default class UIElements {
       context.font = `${this.mediumFontSize}px ${this.fontFamily}`
       context.fillText(`${quotes[this.game.randomQuote]?.author}`, this.game.width * 0.5, this.game.height * 0.48)
       context.font = `${this.smallFontSize}px ${this.fontFamily}`
-      context.fillText(`Press Enter to restart`, this.game.width * 0.5, this.game.height * 0.55)
+      context.fillText(`Press Enter to restart`, this.game.width * 0.5, this.game.height * 0.7)
    }
     context.restore()
   }

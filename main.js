@@ -42,6 +42,7 @@ window.addEventListener('load', function(){
       this.player.currentState.enter()
       this.energy = 100
       this.energyMax = 100
+      this.randomQuote = ~~(Math.random() * 7)
     }
     update(deltaTime){
       if(this.lives <= 0){
@@ -128,6 +129,7 @@ window.addEventListener('load', function(){
       this.player.currentState = this.player.states[0]
       this.player.currentState.enter()
       this.energy = 100
+      this.randomQuote = ~~(Math.random() * 10)
       animate(0)
     }
   }

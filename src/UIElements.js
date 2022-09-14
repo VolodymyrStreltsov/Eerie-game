@@ -1,15 +1,18 @@
+import quotes from "./quotesArray.js"
+
 export default class UIElements {
   constructor(game){
     this.game = game
     this.largeFontSize = 30
-    this.smallFontSize = 20
+    this.mediumFontSize = 23
+    this.smallFontSize = 18
     this.fontFamily = 'Amatic SC'
     this.mainFontColor = 'rgba(255, 255, 255, 0.7)'
     this.secondaryFontColor = 'rgba(0, 0, 0, 0.5)'
     this.shadowColor = 'rgba(0, 0, 0, 0.9)'
     this.liveImage = heart
     this.energyImage = energy
-    this.gameOverSound = new Audio('./assets/sounds/death.mp3')
+    this.gameOverSound = new Audio('./assets/sounds/death.flac')
     this.themeSound = new Audio('./assets/sounds/theme.mp3')
     this.themeSound.volume = 0.2
   }
@@ -37,14 +40,19 @@ export default class UIElements {
     context.shadowColor = 'rgba(255, 255, 255)'
     context.fillText('press X to attack', this.game.width * 0.8, this.game.height - 15)
 
+
+    console.log(this.game.randomQuote)
     if(this.game.gameOver){
       this.themeSound.pause()
       this.gameOverSound.play()
-      context.font = `${this.largeFontSize}px ${this.fontFamily}`
+      context.font = `italic ${this.mediumFontSize}px ${this.fontFamily}`
       context.fillStyle = this.mainFontColor
       context.shadowColor = this.shadowColor
-      context.fillText(`You died. Pumpkins collected: ${this.game.score}`, this.game.width * 0.5, this.game.height * 0.5)
-      context.fillText(`Press Enter to restart`, this.game.width * 0.5, this.game.height * 0.6)
+      context.fillText(`“${quotes[this.game.randomQuote]?.quote}”`, this.game.width * 0.5, this.game.height * 0.4)
+      context.font = `${this.mediumFontSize}px ${this.fontFamily}`
+      context.fillText(`${quotes[this.game.randomQuote]?.author}`, this.game.width * 0.5, this.game.height * 0.48)
+      context.font = `${this.smallFontSize}px ${this.fontFamily}`
+      context.fillText(`Press Enter to restart`, this.game.width * 0.5, this.game.height * 0.55)
    }
     context.restore()
   }

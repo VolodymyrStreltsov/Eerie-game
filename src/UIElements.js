@@ -50,7 +50,7 @@ export default class UIElements {
       context.font = `${this.mediumFontSize}px ${this.fontFamily}`
       context.fillText(`${quotes[this.game.randomQuote]?.author}`, this.game.width * 0.5, this.game.height * 0.48)
       context.font = `${this.smallFontSize}px ${this.fontFamily}`
-      context.fillText(`Press Enter to restart`, this.game.width * 0.5, this.game.height * 0.7)
+      context.fillText(`Press Enter to resurrect`, this.game.width * 0.5, this.game.height * 0.7)
    }
     context.restore()
   }

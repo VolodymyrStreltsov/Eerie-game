@@ -40,8 +40,6 @@ export default class UIElements {
     context.shadowColor = 'rgba(255, 255, 255)'
     context.fillText('press X to attack', this.game.width * 0.8, this.game.height - 15)
 
-    console.log(this.game.randomQuote) // TODO remove
-
     if(this.game.gameOver){
       this.themeSound.pause()
       this.gameOverSound.play()

@@ -129,7 +129,7 @@ window.addEventListener('load', function(){
       this.player.currentState = this.player.states[0]
       this.player.currentState.enter()
       this.energy = 100
-      this.randomQuote = ~~(Math.random() * 10)
+      this.randomQuote = ~~(Math.random() * 7)
       animate(0)
     }
   }

@@ -6,7 +6,6 @@ const quotes = [
 { quote: 'To die will be an awfully big adventure', author: 'J.M. Barrie' },
 { quote: 'Death may be the greatest of all human blessings', author: 'Socrates' },
 { quote: 'It is natural to die as to be born', author: 'Francis Bacon' },
-{ quote: 'It is natural to die as to be born', author: 'Francis Bacon' }
 ]
 
 export default quotes

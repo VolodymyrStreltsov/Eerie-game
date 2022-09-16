@@ -63,7 +63,7 @@ export class Jumping extends State {
     handleInput(input){
       if(this.game.player.vy > this.game.player.weight) this.game.player.setState(states.FALLING, 1)
       else if(this.game.energy > 0 && input.includes(' ')) this.game.player.setState(states.ATTACKING, 2)
-      else if(input.includes('ArrowDown')) this.game.player.setState(states.DIVING, 0)
+      else if(this.game.energy > 0 && input.includes('ArrowDown')) this.game.player.setState(states.DIVING, 0)
     }
 }
 
@@ -78,7 +78,8 @@ export class Falling extends State {
     }
     handleInput(input){
       if(this.game.player.onGround()) this.game.player.setState(states.RUNNING, 2)
-      else if(input.includes('ArrowDown')) this.game.player.setState(states.DIVING, 0)
+      else if(this.game.energy > 0 && input.includes('ArrowDown')) this.game.player.setState(states.DIVING, 0)
+      else if (this.game.energy > 0 && input.includes(' ')) this.game.player.setState(states.ATTACKING, 1)
     }
 }
 
@@ -101,7 +102,7 @@ export class Attacking extends State {
       else if(!input.includes(' ') && this.game.player.onGround()) this.game.player.setState(states.RUNNING, 2)
       else if (!input.includes(' ') && !this.game.player.onGround()) this.game.player.setState(states.FALLING, 1)
       else if (input.includes(' ') && this.game.player.onGround() && input.includes('ArrowUp')) this.game.player.vy -= 27
-      else if(this.game.energy > 30 && input.includes('ArrowDown') && !this.game.player.onGround()) this.game.player.setState(states.DIVING, 0)
+      else if(this.game.energy > 0 && input.includes('ArrowDown') && !this.game.player.onGround()) this.game.player.setState(states.DIVING, 0)
     }
 }
 

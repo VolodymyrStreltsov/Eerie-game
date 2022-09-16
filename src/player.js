@@ -91,7 +91,7 @@ export default class Payer {
         })
     }
     restart(){
-        this.x = 50
+        // this.x = 50 // uncomment this line to reset player position on restart
         this.y = this.game.height - this.height - this.game.groundMargin
         this.vy = 0
         this.speed = 0

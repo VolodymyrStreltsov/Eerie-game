@@ -38,7 +38,7 @@ export default class UIElements {
     context.font = `${this.smallFontSize}px ${this.fontFamily}`
     context.fillStyle = this.secondaryFontColor
     context.shadowColor = 'rgba(255, 255, 255)'
-    context.fillText('press X to attack', this.game.width * 0.8, this.game.height - 15)
+    context.fillText('Arrows for move, space for attack', this.game.width * 0.7, this.game.height - 15)
 
     if(this.game.gameOver){
       this.themeSound.pause()

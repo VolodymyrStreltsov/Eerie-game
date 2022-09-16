@@ -2,15 +2,15 @@ export default class InputHandler {
     constructor(game){
       this.game = game
       this.keys = []
-      this.touchY = ''
-      this.touchX = ''
+      this.touchY = ' '
+      this.touchX = ' '
       this.touchThreshold = 30
       window.addEventListener('keydown', e => {
         if(( e.key === 'ArrowDown' ||
              e.key === 'ArrowUp'   ||
              e.key === 'ArrowLeft' ||
              e.key === 'ArrowRight'||
-             e.key === 'x')
+             e.key === ' ')
              && this.keys.indexOf(e.key) === -1){
           this.keys.push(e.key)
         } // else if(e.key === 'd') this.game.debug = !this.game.debug // uncomment for debugging
@@ -24,7 +24,7 @@ export default class InputHandler {
              e.key === 'ArrowUp'   ||
              e.key === 'ArrowLeft' ||
              e.key === 'ArrowRight'||
-             e.key === 'x'){
+             e.key === ' '){
           this.keys.splice(this.keys.indexOf(e.key), 1)
         }
       })
@@ -38,14 +38,14 @@ export default class InputHandler {
         const swipeDistanceX = this.touchX - e.changedTouches[0].clientX
         const attack = e.changedTouches.length > 1
 
-        if(attack && this.keys.indexOf('x') === -1) this.keys.push('x')
+        if(attack && this.keys.indexOf(' ') === -1) this.keys.push(' ')
         else if(swipeDistanceY < -this.touchThreshold && this.keys.indexOf('ArrowDown') === -1) this.keys.push('ArrowDown')
         else if(swipeDistanceY > this.touchThreshold && this.keys.indexOf('ArrowUp') === -1) this.keys.push('ArrowUp')
         else if(swipeDistanceX < -this.touchThreshold && this.keys.indexOf('ArrowRight') === -1) this.keys.push('ArrowRight')
         else if(swipeDistanceX > this.touchThreshold && this.keys.indexOf('ArrowLeft') === -1) this.keys.push('ArrowLeft')
       })
       window.addEventListener('touchend', e => {
-        this.keys.splice(this.keys.indexOf('x'), 1)
+        this.keys.splice(this.keys.indexOf(' '), 1)
         this.keys.splice(this.keys.indexOf('ArrowUp'), 1)
         this.keys.splice(this.keys.indexOf('ArrowDown'), 1)
         this.keys.splice(this.keys.indexOf('ArrowLeft'), 1)

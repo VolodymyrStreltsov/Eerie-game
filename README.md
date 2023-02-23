@@ -1,7 +1,11 @@
 # Eerie game
  Pure Js/HTML/CSS mini game
 
-<a href="https://volodymyrstreltsov.github.io/Eerie-game/">LIVE</a>
+<a href="https://volodymyrstreltsov.github.io/Eerie-game/">
+ <div>LIVE</div>
+ <img src='https://user-images.githubusercontent.com/80418169/220909377-590f9a07-638b-4791-a0f3-986683376d83.png' />
+</a>
+
 
 This is a JavaScript game project that is built using canvas element for rendering graphics. The game has multiple classes such as Background, ClimbingEnemy, FlyingEnemy, GroundEnemy, GameObjectManager, InputHandler, Player, Pumpkin, and UIElements that are imported using ES6 modules. The main class of the game is Game which contains properties and methods that control the game's behavior such as adding enemies, rewards, updating the game state, handling collisions, and rendering graphics.
 

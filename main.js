@@ -1,5 +1,6 @@
 import Background from './src/background.js'
 import { ClimbingEnemy, FlyingEnemy, GroundEnemy } from './src/enemies.js'
+import GameObjectManager from './src/gameObjectManager.js'
 import InputHandler from './src/input.js'
 import Player from './src/player.js'
 import { Pumpkin } from './src/rewards.js'
@@ -10,7 +11,7 @@ import UIElements from './src/UIElements.js'
 window.addEventListener('load', function(){
   const canvas = canvas1
   const ctx = canvas.getContext('2d')
-  canvas.width = 500
+  canvas.width = 800
   canvas.height = 500
 
   class Game {
@@ -43,6 +44,11 @@ window.addEventListener('load', function(){
       this.energy = 100
       this.energyMax = 100
       this.randomQuote = ~~(Math.random() * 7)
+
+      this.enemyManager = new GameObjectManager(this.enemies)
+      this.rewardManager = new GameObjectManager(this.rewards)
+      this.collisionManager = new GameObjectManager(this.collisions)
+      this.particleManager = new GameObjectManager(this.particles)
     }
     update(deltaTime){
       if(this.lives <= 0){
@@ -60,51 +66,27 @@ window.addEventListener('load', function(){
         this.enemyTimer = 0
       } else this.enemyTimer += deltaTime
 
-      this.enemies.forEach((enemy, idx) => {
-        enemy.update(deltaTime)
-        if(enemy.readyForDelete) this.enemies.splice(idx, 1)
-      })
-
       if(this.rewardTimer > this.rewardInterval){
         this.addReward()
         this.rewardTimer = 0
       } else this.rewardTimer += deltaTime
 
-      this.rewards.forEach((reward, idx) => {
-        reward.update(deltaTime)
-        if(reward.readyForDelete) this.rewards.splice(idx, 1)
-      })
 
-      this.collisions.forEach((collision, idx) => {
-        collision.update(deltaTime)
-        if(collision.readyForDelete) this.collisions.splice(idx, 1)
-      })
+      this.enemyManager.update(deltaTime)
+      this.rewardManager.update(deltaTime)
+      this.collisionManager.update(deltaTime)
+      this.particleManager.update(deltaTime)
 
-      this.particles.forEach((particle, idx) => {
-        particle.update()
-        if(particle.readyForDelete) this.particles.splice(idx, 1)
-      })
       if(this.particles.length > this.maxParticles) this.particles.length = this.maxParticles
     }
     draw(context){
       this.background.draw(context)
       this.player.draw(context)
 
-      this.rewards.forEach(reward => {
-        reward.draw(context)
-      })
-
-      this.enemies.forEach(enemy => {
-        enemy.draw(context)
-      })
-
-      this.collisions.forEach(collision => {
-        collision.draw(context)
-      })
-
-      this.particles.forEach(particle => {
-        particle.draw(context)
-      })
+      this.rewardManager.draw(context)
+      this.enemyManager.draw(context)
+      this.collisionManager.draw(context)
+      this.particleManager.draw(context)
 
       this.UI.draw(context)
     }
@@ -122,10 +104,6 @@ window.addEventListener('load', function(){
       this.speed = 0
       this.score = 0
       this.lives = 3
-      this.enemies = []
-      this.particles = []
-      this.collisions = []
-      this.rewards = []
       this.player.currentState = this.player.states[0]
       this.player.currentState.enter()
       this.energy = 100

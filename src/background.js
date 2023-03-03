@@ -37,7 +37,7 @@ export default class Background {
       this.layer3 = new Layer(this.game, this.width, this.height, 0.8, this.layerImg3)
       this.layer4 = new Layer(this.game, this.width, this.height, 0.7, this.layerImg4)
       this.layer5 = new Layer(this.game, this.width, this.height, 0.5, this.layerImg5)
-      this.layer6 = new Layer(this.game, this.width, this.height, 0.4, this.layerImg6)
+      this.layer6 = new Layer(this.game, this.width, this.height, 0.3, this.layerImg6)
       this.layer7 = new Layer(this.game, this.width, this.height, 0.2, this.layerImg7)
       this.layer8 = new Layer(this.game, this.width, this.height, 0.05, this.layerImg8)
       this.layers = [this.layer8, this.layer7, this.layer6, this.layer5, this.layer4, this.layer3, this.layer2, this.layer1]

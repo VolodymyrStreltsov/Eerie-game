@@ -5,7 +5,7 @@
 }
 
 body {
-  background-color: #0f1326;
+  background-color: rgb(15, 19, 38);
 }
 
   @media screen and (max-width: 500px) {
@@ -25,8 +25,10 @@ body {
 #canvas1 {
   max-width: 100%;
   max-height: 100%;
-  border: 1px solid #000;
-  background-color: #0f1326;
+  box-shadow: rgb(18, 67, 100) 0px 22px 70px 4px;
+  border: 1px solid rgb(8, 35, 54);
+  border-radius: 20px;
+  background-color: rgb(17, 58, 85);
 }
 
 #player, #layer1, #layer2, #layer3, #layer4, #layer5, #layer6, #layer7, #layer8, #flyingEnemy, #groundEnemy, #climbingEnemy, #boom, #heart, #energy, #groundObstacle, #pumpkin, #fire {

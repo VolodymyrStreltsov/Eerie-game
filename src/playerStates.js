@@ -140,7 +140,7 @@ export class Hit extends State {
       this.game.player.frameY = 0
       this.game.player.maxFrame = 13
     }
-    handleInput(input){
+    handleInput(){
       if(this.game.lives > 0 && !this.game.gameOver){
       if(this.game.player.frameX >= 3 && this.game.player.onGround()) this.game.player.setState(states.RUNNING, 2)
       else if (this.game.player.frameX >= 3 && !this.game.player.onGround()) this.game.player.setState(states.FALLING, 2)

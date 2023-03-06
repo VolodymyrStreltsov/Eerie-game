@@ -9,7 +9,7 @@ class Layer {
     this.y = 0
   }
   update() {
-    if (this.x < -this.width) this.x = 0
+    if (this.x < -this.width) this.x = -5
     else this.x -= this.game.speed * this.speedModifier
   }
   draw(context) {
@@ -31,16 +31,14 @@ export default class Background {
       this.layerImg5 = layer5
       this.layerImg6 = layer6
       this.layerImg7 = layer7
-      this.layerImg8 = layer8
       this.layer1 = new Layer(this.game, this.width, this.height, 1, this.layerImg1)
       this.layer2 = new Layer(this.game, this.mainWidth, this.height, 0.9, this.layerImg2)
       this.layer3 = new Layer(this.game, this.width, this.height, 0.8, this.layerImg3)
       this.layer4 = new Layer(this.game, this.width, this.height, 0.7, this.layerImg4)
       this.layer5 = new Layer(this.game, this.width, this.height, 0.5, this.layerImg5)
       this.layer6 = new Layer(this.game, this.width, this.height, 0.3, this.layerImg6)
-      this.layer7 = new Layer(this.game, this.width, this.height, 0.2, this.layerImg7)
-      this.layer8 = new Layer(this.game, this.width, this.height, 0.05, this.layerImg8)
-      this.layers = [this.layer8, this.layer7, this.layer6, this.layer5, this.layer4, this.layer3, this.layer2, this.layer1]
+      this.layer7 = new Layer(this.game, this.width, this.height, 0, this.layerImg7)
+      this.layers = [this.layer7, this.layer6, this.layer5, this.layer4, this.layer3, this.layer2, this.layer1]
     }
     update(){
       this.layers.forEach(layer => layer.update())

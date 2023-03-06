@@ -31,6 +31,6 @@ body {
   background-color: rgb(17, 58, 85);
 }
 
-#player, #layer1, #layer2, #layer3, #layer4, #layer5, #layer6, #layer7, #layer8, #flyingEnemy, #groundEnemy, #climbingEnemy, #boom, #heart, #energy, #groundObstacle, #pumpkin, #fire {
+#player, #layer1, #layer2, #layer3, #layer4, #layer5, #layer6, #layer7, #flyingEnemy, #groundEnemy, #climbingEnemy, #boom, #heart, #energy, #groundObstacle, #pumpkin, #fire {
   display: none;
 }
